@@ -1,6 +1,5 @@
 package de.shardcraft;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class OAuth2Simulator extends Application {
+public class Application extends javafx.application.Application {
 
   @Override
   public void start(Stage stage) throws IOException {
@@ -18,7 +17,7 @@ public class OAuth2Simulator extends Application {
   }
 
   private static Parent loadFXML(String fxml) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(OAuth2Simulator.class.getResource("/" + fxml + ".fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("/" + fxml + ".fxml"));
     return fxmlLoader.load();
   }
 

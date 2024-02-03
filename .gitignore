@@ -30,3 +30,4 @@ replay_pid*
 
 # maven
 target
+/dependency-reduced-pom.xml
