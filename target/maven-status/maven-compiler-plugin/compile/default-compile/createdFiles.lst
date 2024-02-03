@@ -1,8 +1,0 @@
-de\shardcraft\ClientCredentials.class
-module-info.class
-de\shardcraft\OAuth2Client$ClientCredentialsFlowBody.class
-de\shardcraft\httpclient\HttpRequestSender.class
-de\shardcraft\OAuth2Client.class
-de\shardcraft\OAuth2Simulator.class
-de\shardcraft\Main.class
-de\shardcraft\ConfigController.class
