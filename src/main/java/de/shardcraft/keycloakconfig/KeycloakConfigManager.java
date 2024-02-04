@@ -1,17 +1,14 @@
-package de.shardcraft;
+package de.shardcraft.keycloakconfig;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.springframework.stereotype.Component;
 
+@Component
 public class KeycloakConfigManager {
 
-  private static final KeycloakConfigManager instance = new KeycloakConfigManager();
-
-  public static KeycloakConfigManager getInstance() {
-    return instance;
-  }
-
-  private final StringProperty keycloakUriProperty = new SimpleStringProperty("http://localhost:8280");
+  private final StringProperty keycloakUriProperty =
+      new SimpleStringProperty("http://localhost:8280");
   private final StringProperty realmProperty = new SimpleStringProperty("myrealm");
 
   public StringProperty getKeycloakUriProperty() {

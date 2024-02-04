@@ -1,39 +1,29 @@
-package de.shardcraft;
+package de.shardcraft.token;
 
-import de.shardcraft.token.Token;
-import de.shardcraft.token.TokenManager;
+import com.nimbusds.oauth2.sdk.token.Token;
+import java.util.Base64;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
-import javafx.util.StringConverter;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
-import java.util.Base64;
-
+@Component
 public class TokensController {
 
+  private final TokenManager tokenManager;
   @FXML private ComboBox<Token> tokenSelectionField;
   @FXML private TextArea tokenDisplay;
 
+  public TokensController(TokenManager tokenManager) {
+    this.tokenManager = tokenManager;
+  }
+
   @FXML
   public void initialize() {
-    tokenSelectionField
-        .itemsProperty()
-        .bindBidirectional(TokenManager.getInstance().getTokenList());
-    tokenSelectionField.setConverter(
-        new StringConverter<>() {
-          @Override
-          public String toString(Token token) {
-            return token != null ? token.getName() : "";
-          }
-
-          @Override
-          public Token fromString(String name) {
-            return TokenManager.getInstance().findToken(name).orElse(null);
-          }
-        });
+    tokenSelectionField.itemsProperty().bindBidirectional(tokenManager.getTokenList());
     tokenSelectionField
         .valueProperty()
         .addListener((observable, oldValue, newValue) -> tokenDisplay.setText(newValue.getValue()));

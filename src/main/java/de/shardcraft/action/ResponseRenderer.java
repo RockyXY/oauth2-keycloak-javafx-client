@@ -1,22 +1,15 @@
-package de.shardcraft.httpclient;
+package de.shardcraft.action;
 
+import com.nimbusds.oauth2.sdk.http.HTTPResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.http.HttpResponse;
-import java.util.List;
-import java.util.Map;
-
 public class ResponseRenderer {
 
-  public String render(HttpResponse<String> response) {
+  public String render(HTTPResponse response) {
     StringBuilder result = new StringBuilder("Response" + System.lineSeparator());
-    Map<String, List<String>> header = response.headers().map();
-    if (!header.isEmpty()) {
-      result.append(new HeaderRenderer().render(header));
-    }
-    if (response.body() != null && !response.body().isBlank()) {
-      String prettyfiedJsonResponseBody = tryToPrettify(response.body());
+    if (response.getBody() != null && !response.getBody().isBlank()) {
+      String prettyfiedJsonResponseBody = tryToPrettify(response.getBody());
       result.append(prettyfiedJsonResponseBody).append(System.lineSeparator());
     }
     return result.toString();

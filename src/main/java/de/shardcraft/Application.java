@@ -1,27 +1,12 @@
 package de.shardcraft;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.IOException;
-
-public class Application extends javafx.application.Application {
-
-  @Override
-  public void start(Stage stage) throws IOException {
-    Scene scene = new Scene(loadFXML("main"));
-    stage.setScene(scene);
-    stage.show();
-  }
-
-  private static Parent loadFXML(String fxml) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("/" + fxml + ".fxml"));
-    return fxmlLoader.load();
-  }
+@SpringBootApplication
+public class Application {
 
   public static void main(String[] args) {
-    launch();
+
+    javafx.application.Application.launch(JavaFXApplication.class, args);
   }
 }

@@ -1,18 +1,13 @@
 package de.shardcraft.token;
 
+import com.nimbusds.oauth2.sdk.token.Token;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
+import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
+@Component
 public class TokenManager {
-
-  private static final TokenManager instance = new TokenManager();
-
-  public static TokenManager getInstance() {
-    return instance;
-  }
 
   private final ListProperty<Token> tokens =
       new SimpleListProperty<>(FXCollections.observableArrayList());
@@ -21,12 +16,8 @@ public class TokenManager {
     return tokens;
   }
 
-  public void addToken(String name, String value) {
-    tokens.removeIf(token -> token.getName().equals(name));
-    tokens.add(new Token(name, value));
-  }
-
-  public Optional<Token> findToken(String name) {
-    return tokens.stream().filter(token -> token.getName().equals(name)).findFirst();
+  public void addToken(Token token) {
+    tokens.removeIf(t -> token.getValue().equals(t.getValue()));
+    tokens.add(token);
   }
 }
