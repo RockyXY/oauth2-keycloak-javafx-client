@@ -4,6 +4,7 @@ import de.shardcraft.SpringFxmlLoader;
 import de.shardcraft.action.RequestActionCell;
 import de.shardcraft.action.RequestActionType;
 import de.shardcraft.action.introspection.TokenIntrospectionRequestActionType;
+import de.shardcraft.action.tokenrequest.TokenRequestActionType;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -22,7 +23,8 @@ public class RequestsController {
     requestComboBox.setCellFactory(param -> new RequestActionCell());
     requestComboBox.setButtonCell(new RequestActionCell());
     requestComboBox.setItems(
-        FXCollections.observableArrayList(new TokenIntrospectionRequestActionType()));
+        FXCollections.observableArrayList(
+            new TokenIntrospectionRequestActionType(), new TokenRequestActionType()));
     requestComboBox
         .valueProperty()
         .addListener(

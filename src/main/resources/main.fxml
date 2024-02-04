@@ -30,9 +30,6 @@
             <Tab closable="false" text="Requests">
                 <fx:include source="requests.fxml"/>
             </Tab>
-            <Tab closable="false" text="Tokens">
-                <fx:include source="tokens.fxml"/>
-            </Tab>
         </TabPane>
         <fx:include source="console.fxml" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
     </GridPane>

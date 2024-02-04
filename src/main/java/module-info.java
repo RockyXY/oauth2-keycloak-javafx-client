@@ -6,6 +6,7 @@ module oauth.keycloak.simulator {
   opens de.shardcraft.token;
   opens de.shardcraft.action;
   opens de.shardcraft.action.introspection;
+  opens de.shardcraft.action.tokenrequest;
   opens de.shardcraft.keycloakconfig;
   opens de.shardcraft.console;
   opens de.shardcraft.requests;

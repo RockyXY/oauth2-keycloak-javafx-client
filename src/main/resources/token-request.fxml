@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="de.shardcraft.action.tokenrequest.TokenRequestController">
+    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox>
+            <Label text="Client">
+                <padding>
+                    <Insets right="20.0"/>
+                </padding>
+            </Label>
+            <ComboBox fx:id="clientComboBox"/>
+        </HBox>
+        <HBox>
+            <Label text="Token Name">
+                <padding>
+                    <Insets right="20.0"/>
+                </padding>
+            </Label>
+            <TextField fx:id="tokenNameField"/>
+        </HBox>
+        <Button mnemonicParsing="false" onAction="#doAction" text="Send"/>
+    </VBox>
+</AnchorPane>

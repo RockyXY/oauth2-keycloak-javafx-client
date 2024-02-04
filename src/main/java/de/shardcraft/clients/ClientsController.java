@@ -29,7 +29,7 @@ public class ClientsController {
     clientListView.setCellFactory(param -> new ClientEntryCell());
     clientListView
         .itemsProperty()
-        .bind(
+        .bindBidirectional(
             new SimpleListProperty<>(
                 new SortedList<>(clientManager.getClientList(), new ClientEntryComparator())));
     clientListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
