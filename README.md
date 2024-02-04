@@ -33,3 +33,9 @@ also https://unix.stackexchange.com/questions/347116/how-to-create-keystore-and-
    ``
    keytool -import -alias server-cert -file keycloak.pem -keystore client.truststore
    ``
+
+#### Start keycloak with keystore
+
+``
+bin/kc.bat start --https-key-store-file=keycloak.keystore --https-key-store-password=******
+``
