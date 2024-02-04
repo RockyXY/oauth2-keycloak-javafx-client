@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.shardcraft.clients.ClientsController">
+    <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+          AnchorPane.topAnchor="0.0">
+        <ListView fx:id="clientListView"/>
+        <VBox fx:id="formFieldContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0"
+              AnchorPane.topAnchor="0.0">
+            <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                  AnchorPane.topAnchor="0.0">
+                <Label text="Client ID"/>
+                <TextField fx:id="clientIdField"/>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0">
+                <children>
+                    <Label text="Secret"/>
+                    <TextField fx:id="clientSecretField"/>
+                </children>
+            </HBox>
+            <Button mnemonicParsing="false" text="Save" onAction="#onSave"/>
+        </VBox>
+    </HBox>
+</AnchorPane>

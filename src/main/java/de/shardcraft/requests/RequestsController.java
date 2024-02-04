@@ -1,13 +1,11 @@
 package de.shardcraft.requests;
 
-import de.shardcraft.Application;
+import de.shardcraft.SpringFxmlLoader;
 import de.shardcraft.action.RequestActionCell;
 import de.shardcraft.action.RequestActionType;
 import de.shardcraft.action.introspection.TokenIntrospectionRequestActionType;
-import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
@@ -35,11 +33,6 @@ public class RequestsController {
   }
 
   private Parent loadFXML(String fxml) {
-    FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("/" + fxml + ".fxml"));
-    try {
-      return fxmlLoader.load();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+    return SpringFxmlLoader.getInstance().load(fxml);
   }
 }

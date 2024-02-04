@@ -8,8 +8,18 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class SpringFxmlLoader {
 
-  private static final ApplicationContext applicationContext =
+  private static SpringFxmlLoader instance;
+  private final ApplicationContext applicationContext =
       new AnnotationConfigApplicationContext(Application.class);
+
+  private SpringFxmlLoader() {}
+
+  public static SpringFxmlLoader getInstance() {
+    if (instance == null) {
+      instance = new SpringFxmlLoader();
+    }
+    return instance;
+  }
 
   public Parent load(String name) {
     FXMLLoader loader = new FXMLLoader(Application.class.getResource("/" + name + ".fxml"));

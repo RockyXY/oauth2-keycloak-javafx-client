@@ -22,7 +22,10 @@
         <TabPane prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="0"
                  GridPane.rowIndex="1">
             <Tab closable="false" text="Config">
-                <fx:include source="config.fxml"/>
+                <fx:include source="keycloak-config.fxml"/>
+            </Tab>
+            <Tab closable="false" text="Clients">
+                <fx:include source="clients.fxml"/>
             </Tab>
             <Tab closable="false" text="Requests">
                 <fx:include source="requests.fxml"/>
