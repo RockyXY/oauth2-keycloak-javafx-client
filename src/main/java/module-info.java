@@ -10,6 +10,7 @@ module oauth.keycloak.simulator {
   opens de.shardcraft.console;
   opens de.shardcraft.requests;
   opens de.shardcraft.clients;
+  opens de.shardcraft.ssl;
 
   requires static lombok;
   requires java.net.http;

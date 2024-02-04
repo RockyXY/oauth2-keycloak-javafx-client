@@ -2,34 +2,48 @@ package de.shardcraft.action;
 
 import com.nimbusds.oauth2.sdk.http.HTTPRequest;
 import com.nimbusds.oauth2.sdk.http.HTTPResponse;
+import com.nimbusds.oauth2.sdk.util.tls.TLSUtils;
+import com.nimbusds.oauth2.sdk.util.tls.TLSVersion;
 import de.shardcraft.console.ConsoleManager;
-import java.io.IOException;
-import org.json.JSONException;
-import org.json.JSONObject;
+import de.shardcraft.ssl.SslConfigManager;
+import java.io.File;
+import java.io.FileInputStream;
+import java.security.KeyStore;
+import javax.net.ssl.SSLSocketFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HttpRequestSender {
 
+  private final SslConfigManager sslConfigManager;
   private final ConsoleManager consoleManager;
 
-  public HttpRequestSender(ConsoleManager consoleManager) {
+  public HttpRequestSender(SslConfigManager sslConfigManager, ConsoleManager consoleManager) {
+    this.sslConfigManager = sslConfigManager;
     this.consoleManager = consoleManager;
   }
 
   public HTTPResponse send(HTTPRequest request) {
     try {
       consoleManager.addText(new RequestRenderer().render(request));
-      HTTPResponse response = request.send();
-      try {
-        JSONObject jsonResponse = new JSONObject(response.getBody());
-        consoleManager.addText(jsonResponse.toString(2));
-      } catch (JSONException ex) {
-        consoleManager.addText(response.getBody());
+      if (request.getURI().getScheme().equals("https")) {
+        request.setSSLSocketFactory(createSslSocketFactory());
       }
-      return response;
-    } catch (IOException e) {
+      return request.send();
+    } catch (Exception e) {
       throw new RuntimeException(e);
     }
+  }
+
+  private SSLSocketFactory createSslSocketFactory() throws Exception {
+    File trustStoreFile = new File(sslConfigManager.getSslConfig().getPathToTruststore().get());
+    String trustStorePassword = sslConfigManager.getSslConfig().getTrustStorePassword().get();
+
+    // default type is "pkcs12"
+    KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+    trustStore.load(new FileInputStream(trustStoreFile), trustStorePassword.toCharArray());
+
+    // TLS 1.3 has been standard since 2018 and is recommended.
+    return TLSUtils.createSSLSocketFactory(trustStore, TLSVersion.TLS_1_3);
   }
 }

@@ -9,9 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class ActionExecutor {
 
+  private final HttpRequestSender httpRequestSender;
   private final ConsoleManager consoleManager;
 
-  public ActionExecutor(ConsoleManager consoleManager) {
+  public ActionExecutor(HttpRequestSender httpRequestSender, ConsoleManager consoleManager) {
+    this.httpRequestSender = httpRequestSender;
     this.consoleManager = consoleManager;
   }
 
@@ -21,7 +23,7 @@ public class ActionExecutor {
 
   public HTTPResponse execute(HTTPRequest request) {
     try {
-      HTTPResponse response = new HttpRequestSender(consoleManager).send(request);
+      HTTPResponse response = httpRequestSender.send(request);
       consoleManager.addText(new ResponseRenderer().render(response));
       return response;
     } catch (Exception ex) {

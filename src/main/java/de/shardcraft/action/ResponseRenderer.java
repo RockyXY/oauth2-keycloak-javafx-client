@@ -7,11 +7,13 @@ import org.json.JSONObject;
 public class ResponseRenderer {
 
   public String render(HTTPResponse response) {
-    StringBuilder result = new StringBuilder("Response" + System.lineSeparator());
+    StringBuilder result =
+        new StringBuilder("---------- Response ----------" + System.lineSeparator());
     if (response.getBody() != null && !response.getBody().isBlank()) {
       String prettyfiedJsonResponseBody = tryToPrettify(response.getBody());
       result.append(prettyfiedJsonResponseBody).append(System.lineSeparator());
     }
+    result.append("-----------------------------").append(System.lineSeparator());
     return result.toString();
   }
 
